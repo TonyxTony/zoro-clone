@@ -1,5 +1,6 @@
 <?php
 require('./_config.php');
+require('./_php/anilist_api.php'); // Include AniList API
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +97,19 @@ require('./_config.php');
                             </div>
                             <div class="xhashtag">
                                 <span class="title">Top search:</span>
+<?php
+    // Dynamic Top search list via AniList Trending Anime
+    $topSearchResult = get_trending_anime(1, 10);
+    if (isset($topSearchResult['data']['Page']['media'])) {
+        foreach ($topSearchResult['data']['Page']['media'] as $media) {
+            $tsTitle = $media['title']['english'] ?: $media['title']['romaji'];
+            $urlTitle = urlencode($tsTitle);
+            echo '<a href="'.$websiteUrl.'/search?keyword='.$urlTitle.'" class="item">'.htmlspecialchars($tsTitle, ENT_QUOTES, 'UTF-8').'</a>';
+        }
+    }
+?>
 
+<!--
                                 <a href="<?= $websiteUrl ?>/search?keyword=Dandadan" class="item">Dandadan</a>
 
                                 <a href="<?= $websiteUrl ?>/search?keyword=One+Piece" class="item">One Piece</a>
@@ -120,6 +133,7 @@ require('./_config.php');
                                     class="item">Dragon Ball Daima</a>
 
                                 <a href="<?= $websiteUrl ?>/search?keyword=My%20Hero%20Academia%20Season%207" class="item">My Hero Academia Season 7</a>
+-->
 
                             </div>
                             <div class="clearfix"></div>
@@ -272,6 +286,42 @@ require('./_config.php');
                         <div class="mwb-right">
                             <div class="zr-news zr-news-list">
                                 <h2 class="heading-news">Popular Anime</h2>
+<?php
+    // Dynamic Popular Anime list from AniList
+    $popularResult = get_popular_anime(1, 5);
+    if (isset($popularResult['data']['Page']['media'])) {
+        foreach ($popularResult['data']['Page']['media'] as $anime) {
+            $title = $anime['title']['english'] ?: $anime['title']['romaji'];
+            $animeId = $anime['id'];
+            $imgUrl = $anime['coverImage']['large'] ?: $anime['coverImage']['medium'];
+            $description = strip_tags($anime['description']);
+            if (mb_strlen($description) > 300) {
+                $description = mb_substr($description, 0, 300) . '...';
+            }
+            $slug = strtolower($title);
+            $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
+            $slug = preg_replace('/-+/', '-', $slug);
+            $slug = trim($slug, '-');
+?>
+<div class="item">
+    <a href="/anime/<?= $animeId ?>/<?= $slug ?>" class="zr-news-thumb"><img src="<?= $imgUrl ?>" class="zrn-image"></a>
+    <div class="zr-news-infor">
+        <a href="/anime/<?= $animeId ?>/<?= $slug ?>" class="zrn-title">
+            <h4 class="news-title"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h4>
+        </a>
+        <div class="description"><?= htmlspecialchars($description, ENT_QUOTES, 'UTF-8') ?></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<?php
+        }
+    }
+?>
+<div class="item item-more">
+    <a href="/popular" class="btn btn-sm btn-block">Show more.</a>
+</div>
+<div class="clearfix"></div>
+<!--
                                 <div class="item">
                                     <a href="/anime/one-piece" class="zr-news-thumb"><img
                                             src="https://gogocdn.net/images/anime/One-piece.jpg" class="zrn-image"></a>

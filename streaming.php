@@ -28,7 +28,7 @@ $pageUrl = $CurPageURL;
 $anilistID = intval($animeID); // assume the route id is the AniList ID
 $detailsResult = get_anime_details($anilistID);
 if (!isset($detailsResult['data']['Media'])) {
-    header('Location: home.php');
+    header('Location: /home.php');
     exit;
 }
 
@@ -59,7 +59,7 @@ $mapperData = json_decode($mapperResponse, true);
 
 if (!$mapperData || !isset($mapperData['episodes'])) {
     // If mapper API fails fall back to home
-    header('Location: home.php');
+    header('Location: /home.php');
     exit;
 }
 
@@ -74,7 +74,7 @@ $currentIndex = array_search($episodeNumber, array_column($episodes, 'number'));
 
 // Guard for invalid episode number
 if ($currentIndex === false) {
-    header('Location: home.php');
+    header('Location: /home.php');
     exit;
 }
 

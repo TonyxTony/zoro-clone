@@ -9,12 +9,11 @@ $contactEmail = "@gmail.com";
 
 $version = "0.1";
 
-$discord = "https://dsc.gg/kirixen";
-$github = "https://github.com/kirixen";
-$twitter = "https://x.com/KiriX3n";
- 
+$discord = "https://discord.gg/7JKJSbnHqf";
+$github = "https://github.com/shafat-96";
+$twitter = "https://x.com/racistprogrammer";
 $disqus = "https://.disqus.com/embed.js";
-$api = "{api}"; 
+$api = "{your-api}/api"; 
 
 $banner = $websiteUrl . "/files/images/banner.png";
 ?>
