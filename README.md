@@ -65,7 +65,7 @@ $version      = '0.1';
 
 // Social / external links
 $discord = 'https://discord.gg/7JKJSbnHqf';  // Community support
-$github  = 'https://github.com/shafat-96';      // Original author credit
+$github  = 'https://github.com/shafat-96';    
 $twitter = 'https://x.com/racistprogrammer';
 $contactEmail = 'shafat96@gmail.com';
 
