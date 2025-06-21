@@ -45,35 +45,9 @@ htdocs/
    composer install   # only if you add composer packages
    ```
 
-2. **Create the database** (MySQL 5.7+ / MariaDB 10.4+ recommended):
-   ```sql
-   CREATE DATABASE anime DEFAULT CHARACTER SET utf8mb4;
+2. **Configure your environment** – copy the example below into `_config.php` or `.env`.
 
-   -- table for user history
-   CREATE TABLE user_history (
-     id INT AUTO_INCREMENT PRIMARY KEY,
-     user_id VARCHAR(64),
-     anime_id VARCHAR(32),
-     anime_title VARCHAR(255),
-     anime_ep INT,
-     anime_image VARCHAR(255),
-     anime_release VARCHAR(10),
-     dubOrSub VARCHAR(8),
-     anime_type VARCHAR(20),
-     watched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-   );
-
-   -- table for page views / likes
-   CREATE TABLE pageview (
-     id VARCHAR(64) PRIMARY KEY,
-     like_count INT DEFAULT 0,
-     dislike_count INT DEFAULT 0
-   );
-   ```
-
-3. **Configure your environment** – copy the example below into `_config.php` or `.env`.
-
-4. **Serve locally** (XAMPP / Apache / nginx + PHP-FPM) and visit `http://localhost:3000/home`.
+3. **Serve locally** (XAMPP / Apache / nginx + PHP-FPM) and visit `http://localhost:3000/home`.
 
 ---
 
@@ -86,20 +60,20 @@ $conn = mysqli_connect('localhost', 'root', '', 'anime') or die('Connection fail
 
 // Site basics
 $websiteTitle = 'Zoro';
-$websiteUrl   = 'http://localhost:3000';
+$websiteUrl   = 'http://localhost:3000';#mandatory
 $version      = '0.1';
 
 // Social / external links
 $discord = 'https://discord.gg/7JKJSbnHqf';  // Community support
-$github  = 'https://github.com/KiriXen';      // Original author credit
-$twitter = 'https://x.com/KiriX3n';
-$contactEmail = 'example@gmail.com';
+$github  = 'https://github.com/shafat-96';      // Original author credit
+$twitter = 'https://x.com/racistprogrammer';
+$contactEmail = 'shafat96@gmail.com';
 
 // Disqus embed (leave blank to disable)
 $disqus = 'https://YOURSHORTNAME.disqus.com/embed.js';
 
 // Optional self-hosted mapper API (leave empty if unused)
-$api = 'https://your-api.tld/api';
+$api = 'https://github.com/shafat-96/anicrush-api.git/api';#mandatory
 
 // Assets
 $websiteLogo = $websiteUrl . '/files/images/logo_zoro.png';
