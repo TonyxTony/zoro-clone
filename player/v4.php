@@ -31,7 +31,7 @@ if (!$id) {
 </head>
 <body>
     <iframe 
-        src="https://vidnest-one.vercel.app/anime/<?= htmlspecialchars($id) ?>" 
+        src="https://vidnest.fun/anime/<?= htmlspecialchars($id) ?>" 
         allowfullscreen 
         loading="lazy">
     </iframe>
