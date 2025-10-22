@@ -7,6 +7,6 @@ define('DB_PASS', 'VBPhaqwQTa');
 define('DB_NAME', 'sql12804085');
 
 // Site Configuration
-define('SITE_URL', 'https://your-app-name.onrender.com');
+define('SITE_URL', 'https://zoro-clone.onrender.com');
 
 ?>
